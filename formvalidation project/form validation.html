@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .usererror span {
+            margin: 3px;
+            color: red;
+        }
+
+        .formdesign {
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .formdesign input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid blue;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .but {
+            border-radius: 10px;
+            width: 80px;
+            height: 40px;
+            font-size: 20px;
+            margin: 22px 10px;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="heading">Form Validation</h1>
+    <form action="/myaction.php" name="myForm" onsubmit="return validateForm()" method="post">
+        <div class="formdesign">
+            Name: <input type="text" placeholder="Enter your name" id="username"><span id="usererror"></span>
+        </div>
+
+        <div id="email" class="formdesign">
+            Email: <input type="email" placeholder="Enter your email" id="useremail"><span id="emailerror"></span>
+        </div>
+
+        <div id="phonenumber" class="formdesign">
+            Phone Number: <input type="text" placeholder="Enter your phone number" id="userphonenumber"><span
+                id="phoneerror"></span>
+        </div>
+
+        <div id="age" class="formdesign">
+            Age: <input type="age" placeholder="Enter your age" id="userage"><span id="ageerror"></span>
+        </div>
+
+        <input class="but" type="submit" value="submit">
+
+    </form>
+    <script>
+        function validateForm() {
+            let returnval= true;
+            let name = document.getElementById('username');
+            let email = document.getElementById('useremail');
+            let phone = document.getElementById('userphonenumber');
+            let age = document.getElementById('userage');
+            if (name.value == "") {
+                document.getElementById("usererror").innerHTML = "*user name is empty";
+                returnval = false;
+            }
+
+            else if (name.value.length < 5) {
+                document.getElementById("usererror").innerHTML = "*user name length is less than 5";
+                returnval = false;
+            }
+            if (email.value == "") {
+                document.getElementById("emailerror").innerHTML = "*user name is empty";
+                returnval = false;
+            }
+
+           else if (email.value.length > 20) {
+                document.getElementById("emailerror").innerHTML = "*user email is too long";
+                returnval = false;
+            }
+
+            if (phone.value == "") {
+                document.getElementById("phoneerror").innerHTML = "*user phone no is empty";
+                returnval = false;
+            }
+
+           else if (phone.value.length<10) {
+                document.getElementById("phoneerror").innerHTML = "*user phone no is too short";
+                returnval = false;
+            }
+
+            if (age.value == "") {
+                document.getElementById("ageerror").innerHTML = "*user age is empty";
+                returnval = false;
+            }
+
+           else if (age.value<18) {
+                document.getElementById("ageerror").innerHTML = "*user age should not be less than 18";
+                returnval = false;
+            }
+
+            return returnval;
+        }
+        
+    </script>
+</body>
+
+</html>
